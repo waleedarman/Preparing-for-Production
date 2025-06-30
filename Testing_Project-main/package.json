@@ -1,0 +1,41 @@
+{
+  "name": "study-night",
+  "version": "1.0.0",
+  "description": "A flashcard tool for studying, optimized and tested using Mocha, Cypress, Parcel, and Gulp.",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp",
+    "test": "mocha",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "cypress": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Obaida-Aws/Testing_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Obaida-Aws/Testing_Project/issues"
+  },
+  "homepage": "https://github.com/Obaida-Aws/Testing_Project#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@parcel/transformer-image": "^2.14.4",
+    "chai": "^5.2.0",
+    "cypress": "^14.3.3",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-cypress": "^4.3.0",
+    "globals": "^16.1.0",
+    "gulp": "^5.0.0",
+    "gulp-cli": "^3.0.0",
+    "gulp-shell": "^0.8.0",
+    "mocha": "^11.3.0",
+    "parcel": "^2.14.4",
+    "prettier": "^3.5.3"
+  }
+}
