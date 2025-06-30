@@ -1,160 +1,201 @@
-📘 Study Night – Optimization & Testing Project
-A front-end flashcard web application designed to reinforce testing, automation, and optimization skills. In this project, students optimize a prebuilt app, write unit and end-to-end tests, automate tasks using Gulp, and prepare the app for production using Parcel.
+# Optimizing and Testing Project: Study Night
 
-🚀 Getting Started
-Prerequisites
-Make sure Node.js is installed:
+## 🚀 Project Overview
 
-Mac / Linux
-bash
-نسخ
-تحرير
+In this project, students will optimize and test the front-end web application **Study Night**, a flashcard tool. You will:
+
+* Create tests to ensure product quality.
+* Install and configure project dependencies.
+* Optimize and automate application tasks.
+
+### Key Tools
+
+* **Mocha & Chai** – Unit Testing
+* **Cypress** – End-to-End Testing
+* **Parcel** – Build & Optimization
+* **Gulp** – Task Automation
+
+---
+
+## 📅 Getting Started
+
+If using a local machine, install **Node.js**:
+
+### Mac / Linux
+
+```bash
 curl -fsSL https://fnm.vercel.app/install | bash
 source ~/.bashrc
 fnm use --install-if-missing 20
 node -v
 npm -v
-Windows (PowerShell)
-powershell
-نسخ
-تحرير
+```
+
+### Windows (PowerShell)
+
+```powershell
 winget install Schniz.fnm
 fnm env --use-on-cd | Out-String | Invoke-Expression
 fnm use --install-if-missing 20
 node -v
 npm -v
-📦 Project Setup
-Initialize the project:
+```
 
-bash
-نسخ
-تحرير
+---
+
+## 📁 Project Setup Instructions
+
+### Step 1: Initialize npm
+
+```bash
 npm init
-In package.json, ensure the following:
+```
 
-json
-نسخ
-تحرير
-{
-  "name": "study-night",
-  "version": "1.0.0",
-  "description": "Flashcard tool optimized with testing and automation",
-  "license": "MIT",
-  "type": "module"
-}
-🛠️ Developer Tools
-VS Code Extensions
-ESLint
+* Fill in: name, version, description
+* Use **MIT license**
+* Add: `"type": "module"` to `package.json`
 
-Prettier
+---
 
-ESLint Config
-Install and configure ESLint:
+## 🛠️ Linting & Formatting
 
-bash
-نسخ
-تحرير
+### Install VS Code Extensions
+
+* ESLint
+* Prettier
+
+### Configure ESLint
+
+```bash
 npm init --save-dev @eslint/config@latest
-Fix ESLint and Prettier issues in:
+```
 
-src/Shuffle.js
+* Restart VS Code
+* Fix issues in:
 
-src/utilityRenderFunctions.js
+  * `src/Shuffle.js`
+  * `src/utilityRenderFunctions.js`
 
-⚠️ Only fix formatting and linting errors — do not change logic.
+> **⚠ Only fix underlined errors. Don't change logic.**
 
-⚙️ Tooling Setup
-Install Gulp and Parcel
-bash
-نسخ
-تحرير
+---
+
+## ⚙️ Install & Configure Gulp and Parcel
+
+### Install
+
+```bash
 npm i --save-dev gulp gulp-cli gulp-shell
 npm i --save-dev parcel
-Configure gulpfile.js
-js
-نسخ
-تحرير
+```
+
+### Configure `gulpfile.js`
+
+```js
 import gulp from 'gulp';
 import shell from 'gulp-shell';
 
 gulp.task('default', shell.task(['parcel src/index.html']));
-
 gulp.task('test', shell.task(['mocha']));
-
 gulp.task('e2e', shell.task(['npx cypress run']));
-Run with:
+```
 
-bash
-نسخ
-تحرير
+### Run App
+
+```bash
 npm run gulp
-Visit: http://localhost:1234
+```
 
-✅ Unit Testing with Mocha
-Install Mocha and Chai:
+Open: `http://localhost:1234`
 
-bash
-نسخ
-تحرير
+> Verify Parcel optimized files inside the `dist/` folder (minified, concatenated, and compressed images).
+
+---
+
+## ✅ Unit Testing with Mocha & Chai
+
+### Install Dependencies
+
+```bash
 npm i --save-dev mocha chai
-Create test file:
+```
 
-test/shuffle.js
+### Create Unit Test
 
-Write at least one test to check array shuffle behavior.
+* Create: `test/shuffle.js`
+* Add a `describe()` block for `shuffle()`
+* Write at least 1 test that verifies shuffling changes array indexes
 
-Run test:
+### Add Task to `gulpfile.js`
 
-bash
-نسخ
-تحرير
+```js
+gulp.task('test', shell.task(['mocha']));
+```
+
+### Run Test
+
+```bash
 npm run gulp test
-🌐 End-to-End Testing with Cypress
-Install Cypress:
+```
 
-bash
-نسخ
-تحرير
+---
+
+## 🌐 End-to-End Testing with Cypress
+
+### Install Cypress
+
+```bash
 npm i --save-dev cypress
-Launch Cypress:
+```
 
-bash
-نسخ
-تحرير
+### Run Cypress UI
+
+```bash
 npx cypress open
-Create tests:
+```
 
-cypress/e2e/navigation.cy.js
-✅ Navigates correctly when clicking:
+* Select **E2E Testing**
+* Cypress creates default files
 
-"Card Set"
+### Create Test Files:
 
-"About"
+* `cypress/e2e/navigation.cy.js`
+* `cypress/e2e/form.cy.js`
 
-"Home"
+---
 
-cypress/e2e/form.cy.js
-✅ Valid form submissions (happy path)
+## 🕹️ Navigation Test (`navigation.cy.js`)
 
-✅ Empty fields show error messages (unhappy path)
+```js
+describe('Navigation Tests', () => {
+  it('Navigates to Card Set page', () => {...});
+  it('Navigates to About page', () => {...});
+  it('Navigates to Home page', () => {...});
+});
+```
 
-Run tests:
+## 🗒️ Form Test (`form.cy.js`)
 
-Make sure the server is running with Parcel
+```js
+describe('Form Tests', () => {
+  it('Create Set - happy path', () => {...});
+  it('Add Card - happy path', () => {...});
+  it('Create Set - empty input shows error', () => {...});
+  it('Add Card - empty input shows error', () => {...});
+});
+```
 
-bash
-نسخ
-تحرير
-npm run gulp e2e
-🏁 Build Output
-After running npm run gulp, check the dist folder:
+### Add Gulp Task to Run Cypress
 
-✅ Images are optimized
+```js
+gulp.task('e2e', shell.task(['npx cypress run']));
+```
 
-✅ Files are minified & concatenated
+> Run `npm run gulp` (in one terminal) before `npm run gulp e2e`
 
-No changes should be made to the dist folder.
+---
 
-📄 License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## 📄 License
 
+This project is licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for more details.
